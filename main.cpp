@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include <cmath>
 #include <ctime>
@@ -102,6 +103,13 @@ int main()
     // 
     //sf::Clock clock;
     //bool isPlaying = false;
+    Music m;
+    if (!m.openFromFile("theme.wav"))
+    {
+        cout<<"ошибка: отсутствует файл \"theme.wav\" "<<endl;
+    }
+    m.setLoop(true);
+    m.play();
     while (window->isOpen())
     {
         backgroundPaint(window);
