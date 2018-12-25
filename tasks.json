@@ -22,7 +22,7 @@
             "type": "shell",
             "command": "g++",
             "args": [
-                "/Users/alex/Desktop/sfmlprj/main.o","-o","sfml-app","-lsfml-graphics","-lsfml-window","-lsfml-system",
+                "/Users/alex/Desktop/sfmlprj/ponyBattle/main.o","-o","sfml-app","-lsfml-graphics","-lsfml-window","-lsfml-system",
                 
             ],
             "group": "build",
