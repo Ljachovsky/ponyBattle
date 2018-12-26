@@ -6,9 +6,16 @@
 #include <cstdlib>
 #include <stdlib.h>
 #include <iostream>
+#include "menu.h"
 
 using namespace sf;
 using namespace std;
+
+#define MENU 0
+#define PLAY 1
+
+
+int gameState;
 
 double clowdsSpeed = 0.3;
 
@@ -84,6 +91,10 @@ void init()
 }
 int main()
 {
+    gameState = MENU;
+
+    Menu *menu = new Menu();
+
     srand(static_cast<unsigned int>(time(NULL)));
 
     RenderWindow *window = new RenderWindow(VideoMode(gameWidth, gameHeight, 32), "BonyBoy!");
@@ -114,6 +125,15 @@ int main()
     {
         backgroundPaint(window);
       
+
+        
+
+        if (gameState==MENU)
+        {
+            menu->drawMenu(window);
+        }
+        gameState = menu->GetMenuState(); // обновим состояние меню
+
         sf::Event event;
         while (window->pollEvent(event))
         {
@@ -124,13 +144,11 @@ int main()
                 break;
             }
 
-            // Space key pressed: play
-            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape))
+            // pause/ exit to menu
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Space))
             {
-                //if (!isPlaying)
-                //{
-                //    
-                //}
+                if (gameState!=MENU)
+                menu->SetMenuState(gameState);
             }
 
             
